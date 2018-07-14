@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:background="@color/material_blue_grey_800"
+    android:gravity="center">
+
+    <ImageButton
+        android:id="@+id/title_bar_left_menu"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_gravity="left|center_vertical"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/titlebar_menu_selector" />
+
+    <LinearLayout
+        android:id="@+id/id_tab_currency"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/id_tab_currency_imgbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:clickable="false"
+            android:src="@drawable/tab_currency_pressed" />
+
+        <TextView
+            android:id="@+id/id_tab_currency_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/currency"
+            android:textColor="#1296db" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/id_tab_trend"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/id_tab_trend_imgbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:clickable="false"
+            android:src="@drawable/tab_trend" />
+
+        <TextView
+            android:id="@+id/id_tab_trend_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/trend"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+</LinearLayout>
