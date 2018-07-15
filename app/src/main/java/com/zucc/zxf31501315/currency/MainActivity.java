@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
@@ -13,10 +12,13 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends FragmentActivity implements View.OnClickListener {
+public class MainActivity extends SlidingFragmentActivity implements View.OnClickListener {
     //声明ViewPager
     private ViewPager mViewPager;
     //适配器
@@ -32,8 +34,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     //Tab对应的Button
     private ImageButton imgbtn_currency;
     private ImageButton imgbtn_trend;
+    private ImageButton btn_back;
     private TextView tvcurrency,tvtrend;
     Context context;
+
+    private SlidingMenu slidingMenu;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,7 +47,16 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         initViews();//初始化控件
         initEvents();//初始化事件
         initDatas();//初始化数据
-//        initLeftMenu();//菜单
+        initLeftMenu();//菜单
+        btn_back = (ImageButton) findViewById(R.id.title_bar_left_menu);
+        slidingMenu = (SlidingMenu)findViewById(R.id.slidingmenumain);
+        //打开或关闭Menu
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                slidingMenu.toggle();
+            }
+        });
     }
     private void initDatas() {
         mFragments = new ArrayList<>();
@@ -166,5 +180,27 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private void initLeftMenu()
     {
 
+        setBehindContentView(R.layout.layout_menu);
+//        getSupportFragmentManager().beginTransaction()
+//                .replace(R.id.menu_frame, leftMenuFragment).commit();
+        SlidingMenu menu = getSlidingMenu();
+        menu.setMode(SlidingMenu.LEFT);
+        // 设置触摸屏幕的模式
+        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
+        menu.setShadowWidthRes(R.dimen.shadow_width);
+//        menu.setShadowDrawable(R.drawable.shadow);
+        // 设置滑动菜单视图的宽度
+        menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+//      menu.setBehindWidth()
+        // 设置渐入渐出效果的值
+        menu.setFadeDegree(0.35f);
+
+        // menu.setBehindScrollScale(1.0f);
+//        menu.setSecondaryShadowDrawable(R.drawable.shadow);
+        //设置右边（二级）侧滑菜单
+//        menu.setSecondaryMenu(R.layout.right_menu_frame);
+//        Fragment rightMenuFragment = new MenuRightFragment();
+//        getSupportFragmentManager().beginTransaction()
+//                .replace(R.id.id_right_menu_frame, rightMenuFragment).commit();
     }
 }
